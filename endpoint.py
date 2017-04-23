@@ -22,7 +22,10 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") #Get current timestamp
         # If someone went to "http://something.somewhere.net/foo/bar/",
         # then s.path equals "/foo/bar/".
-        s.wfile.write("timestamp,hostname\n%s,%s" %(str(timestamp), hostname))
+	iwlist =  check_output(['iwlist', 'wlan0', 'scan']).splitlines()
+	for line in iwlist:
+		if re.search("ESSID:", line):
+        s.wfile.write("timestamp,hostname\n%s,%s" %(str(timestamp), hostname, networks))
         #print ("Temperature is %.2f" % temp)
 
 
