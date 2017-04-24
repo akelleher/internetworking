@@ -36,7 +36,7 @@ def csv_append(file_name, somedata):
     csvfile.close()
 
 urls = []
-leases = open(/var/lib/misc/dnsmasq.leases, "r")
+leases = open("/var/lib/misc/dnsmasq.leases", "r")
 for line in leases:
     match = re.search(r"172\.16\.1\.\d{10, 20}", line)
     if match:
