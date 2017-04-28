@@ -3,7 +3,7 @@
 import time, os, sys, datetime, csv, urllib2, socket, re
 
 def fetchData(url):
-    response = urllib2.urlopen(url, timeout=1)
+    response = urllib2.urlopen(url, timeout=2)
     cr = csv.reader(response)
     haveReadFirstRow = False
     for row in cr:
@@ -60,6 +60,6 @@ while(True):
 	except urllib2.URLError as e:
 	    numFail += 1
             print("Failed to connect to %s -- %d success and %d failures" % (url, numSuccess, numFail))
-    time.sleep(1)
+    time.sleep(10)
 
 
