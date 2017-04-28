@@ -3,7 +3,7 @@
 import time, os, sys, datetime, csv, urllib2, socket, re
 
 def fetchData(url):
-    response = urllib2.urlopen(url, timeout=2)
+    response = urllib2.urlopen(url, timeout=3)
     cr = csv.reader(response)
     haveReadFirstRow = False
     for row in cr:
