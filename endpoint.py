@@ -26,9 +26,10 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         networks = ""
         for line in iwlist:
             if re.search("ESSID:", line):
-                networks+=line.strip()
-                networks+='\n'
-        s.wfile.write("timestamp,hostname,networks\n%s,%s,%s" %(str(timestamp), hostname, networks))
+		networks+='"'
+                networks+=(line.strip())[7:]
+                networks+=' '
+        s.wfile.write("timestamp,hostname,networks\n%s,%s,%s\n" %(str(timestamp), hostname, networks))
         #print ("Temperature is %.2f" % temp)
 
 
