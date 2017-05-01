@@ -38,12 +38,12 @@ def csv_append(file_name, somedata):
 urls = []
 leases = open("/var/lib/misc/dnsmasq.leases", "r")
 for line in leases:
-    match = re.search(r"172\.16\.1\.\d{10, 20}", line)
+    match = re.search(r"172\.16\.1\.(?:1[0-9]|20)", line)
     if match:
-        print match
-        urls.append(match)
+        print match.group(0)
+    seq = ("http://", match.group(0))
+        urls.append(''.join(seq))
 
-urls.append("http://172.16.1.23")
 localFile = "info.csv"
 numSuccess = 0
 numFail = 0
@@ -57,9 +57,8 @@ while(True):
         except socket.timeout as e:
             numFail += 1
             print("Failed to connect to %s -- %d success and %d failures" % (url, numSuccess, numFail))
-	except urllib2.URLError as e:
-	    numFail += 1
+    except urllib2.URLError as e:
+        numFail += 1
             print("Failed to connect to %s -- %d success and %d failures" % (url, numSuccess, numFail))
     time.sleep(10)
-
 
