@@ -57,9 +57,8 @@ while(True):
         except socket.timeout as e:
             numFail += 1
             print("Failed to connect to %s -- %d success and %d failures" % (url, numSuccess, numFail))
-	except urllib2.URLError as e:
-	    numFail += 1
+    except urllib2.URLError as e:
+        numFail += 1
             print("Failed to connect to %s -- %d success and %d failures" % (url, numSuccess, numFail))
     time.sleep(10)
-
 
